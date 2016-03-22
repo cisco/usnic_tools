@@ -36,6 +36,8 @@
 
 AM_CFLAGS = -g -Wall -Werror -Wextra -pedantic
 
+EXTRA_DIST = README.md
+
 bin_PROGRAMS = \
 	usnic_devinfo
 
