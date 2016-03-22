@@ -42,23 +42,42 @@ usnic_0:
 The usnic_tools package requires [Libfabric](http://libfabric.org),
 version 1.3 or higher, built with Cisco usNIC support.
 
-First `configure` the usnic_tools package, and then build and install it:
+## Building from a source tarball
+
+If you are building from a usnic_tools tarball, first run `configure`,
+and then build and install it:
 
 ```sh
 $ tar xf usnic_tools-1.0.0.0.tar.bz2
 $ cd usnic_tools-1.0.0.0
+
 $ ./configure --prefix=/place/to/install
-[... lots of output ...]
+# ... lots of output ...
+
 $ make
-[... lots of output ...]
+# ... lots of output ...
+
 $ sudo make install
-[... lots of output ...]
+# ... lots of output ...
 ```
 
 Optionally, you can specify the location of your Libfabric
 installation via the `--with-libfabric` CLI option to `configure`:
 
 ```sh
-$ ./configure --prefix=/place/to/install \
-    --with-libfabric=/libfabric/install/location
+$ ./configure --prefix=/place/to/install --with-libfabric=/libfabric/install/location
+```
+
+## Building from a git clone
+
+Buidling from a git clone is just like building from a tarball, but
+first you must have the GNU Autoconf, Automake, and Libtool tools
+installed, and then run the `autogen.sh` script:
+
+```sh
+$ ./autogen.sh
+# ... lots of output ...
+
+# ...then follow the configure / make / make install procedure from
+# building a source tarball.
 ```
