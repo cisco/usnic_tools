@@ -87,6 +87,9 @@ dnl Checks for header files.
 AC_HEADER_STDC
 AC_CHECK_HEADER([rdma/fabric.h], [],
 		[AC_MSG_ERROR([<rdma/fabric.h> not found.  usnic_tools requires libfabric.])])
+AC_CHECK_HEADER([rdma/fi_ext_usnic.h], [],
+		[AC_MSG_WARN([libfabric does not appear to have usNIC support included.])
+		 AC_MSG_ERROR([Cannot continue])])
 
 dnl Make sure we have a new enough libfabric
 AC_MSG_CHECKING([if libfabric >=v1.3])
