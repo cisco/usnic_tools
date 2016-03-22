@@ -70,7 +70,7 @@ $ ./configure --prefix=/place/to/install --with-libfabric=/libfabric/install/loc
 
 ## Building from a git clone
 
-Buidling from a git clone is just like building from a tarball, but
+Building from a git clone is just like building from a tarball, but
 first you must have the GNU Autoconf, Automake, and Libtool tools
 installed, and then run the `autogen.sh` script:
 
