@@ -37,6 +37,10 @@ usnic_0:
 	  CQ interrupts:         yes
 ```
 
+# Download
+
+Visit the [Downloads page](https://github.com/cisco/usnic_tools/wiki/Downloads).
+
 # Building and Installing
 
 The usnic_tools package requires [Libfabric](http://libfabric.org),
