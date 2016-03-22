@@ -1,10 +1,12 @@
 Makefile
 Makefile.in
+
 autom4te.cache
 aclocal.m4
 config.h.in
 configure
 config.guess
+config.status
 config.sub
 config.log
 libtool
@@ -15,4 +17,9 @@ missing
 install-sh
 stamp-h?
 
+.deps
+*.o
+
 usnic_tools.spec
+
+usnic_devinfo
