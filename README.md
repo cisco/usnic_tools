@@ -2,7 +2,7 @@ This is a simple tool for extracting some diagnostics and informational
 meta data out of Cisco usNIC devices using the Cisco usNIC extensions
 in [Libfabric](http://libfabric.org/).
 
-The `usnic_info` executable will return information about your usNIC
+The `usnic_devinfo` executable will return information about your usNIC
 Linux devices.  For example:
 
 ```
