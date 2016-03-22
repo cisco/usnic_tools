@@ -1,3 +1,5 @@
+# Overview
+
 This is a simple tool for extracting some diagnostics and informational
 meta data out of Cisco usNIC devices using the Cisco usNIC extensions
 in [Libfabric](http://libfabric.org/).
@@ -33,4 +35,30 @@ usnic_0:
 	  Map per res:           yes
 	  PIO sends:             yes
 	  CQ interrupts:         yes
+```
+
+# Building and Installing
+
+The usnic_tools package requires [Libfabric](http://libfabric.org),
+version 1.3 or higher, built with Cisco usNIC support.
+
+First `configure` the usnic_tools package, and then build and install it:
+
+```sh
+$ tar xf usnic_tools-1.0.0.0.tar.bz2
+$ cd usnic_tools-1.0.0.0
+$ ./configure --prefix=/place/to/install
+[... lots of output ...]
+$ make
+[... lots of output ...]
+$ sudo make install
+[... lots of output ...]
+```
+
+Optionally, you can specify the location of your Libfabric
+installation via the `--with-libfabric` CLI option to `configure`:
+
+```sh
+$ ./configure --prefix=/place/to/install \
+    --with-libfabric=/libfabric/install/location
 ```
