@@ -35,7 +35,7 @@
 #
 
 AC_PREREQ([2.57])
-AC_INIT([usnic_tools], [1.0.0.0])
+AC_INIT([usnic-tools], [1.1.0.0])
 
 AC_CONFIG_AUX_DIR(config)
 AM_INIT_AUTOMAKE([foreign no-define 1.11 dist-bzip2])
@@ -81,12 +81,12 @@ AS_IF([test "x$with_libfabric" != "x"],
 
 dnl Checks for libraries
 AC_CHECK_LIB([fabric], fi_getinfo, [],
-	     AC_MSG_ERROR([fi_getinfo() not found.  usnic_tools requires libfabric.]))
+	     AC_MSG_ERROR([fi_getinfo() not found.  usnic-tools requires libfabric.]))
 
 dnl Checks for header files.
 AC_HEADER_STDC
 AC_CHECK_HEADER([rdma/fabric.h], [],
-		[AC_MSG_ERROR([<rdma/fabric.h> not found.  usnic_tools requires libfabric.])])
+		[AC_MSG_ERROR([<rdma/fabric.h> not found.  usnic-tools requires libfabric.])])
 AC_CHECK_HEADER([rdma/fi_ext_usnic.h], [],
 		[AC_MSG_WARN([libfabric does not appear to have usNIC support included.])
 		 AC_MSG_ERROR([Cannot continue])])
