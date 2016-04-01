@@ -52,8 +52,8 @@ If you are building from a usnic_tools tarball, first run `configure`,
 and then build and install it:
 
 ```sh
-$ tar xf usnic_tools-1.0.0.0.tar.bz2
-$ cd usnic_tools-1.0.0.0
+$ tar xf usnic_tools-1.1.0.0.tar.bz2
+$ cd usnic_tools-1.1.0.0
 
 $ ./configure --prefix=/place/to/install
 # ... lots of output ...
