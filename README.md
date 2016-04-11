@@ -39,7 +39,7 @@ usnic_0:
 
 # Download
 
-Visit the [Downloads page](https://github.com/cisco/usnic_tools/wiki/Downloads).
+Visit the [Github releases page](https://github.com/cisco/usnic_tools/releases).
 
 # Building and Installing
 
