@@ -1,3 +1,5 @@
+[![usnic_tools release version](https://img.shields.io/github/release/cisco/usnic_tools.svg)](https://github.com/cisco/usnic_tools/releases/latest)
+
 # Overview
 
 This is a simple tool for extracting some diagnostics and informational
