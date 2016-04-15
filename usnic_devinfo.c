@@ -168,13 +168,13 @@ int main(int argc, char *argv[]) {
 	struct fi_usnic_ops_fabric *usnic_fabric_ops;
 	struct fid_fabric *fabric;
 	struct fi_usnic_cap **cap;
-	char c;
+	int c;
 	char name[32];
 	int brief = 0;
 	int devno = -1;
 	int ret;
 
-	while ((c = getopt(argc, argv, "bd:")) != EOF) {
+	while ((c = getopt(argc, argv, "bd:")) != -1) {
 		switch (c) {
 		case 'b':
 			brief = 1;
