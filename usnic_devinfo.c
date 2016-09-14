@@ -152,7 +152,41 @@ static int devinfo(struct fi_usnic_info *finfo, int brief)
 	return 0;
 }
 
-void show_help(const char *argv0)
+static long parse_long(char *str)
+{
+	long ret;
+	char *end;
+
+	/* If usnic_ is given, then strtol will not perform conversion and this
+	 * function will return 0. Instead special case it as an error.
+	 */
+	if (strlen(str) == 0) {
+		fprintf(stderr, "error: Invalid device name given\n");
+		return -EINVAL;
+	}
+
+	errno = 0;
+	ret = strtol(str, &end, 10);
+	if (*end != '\0' || errno != 0) {
+		ret = (errno == 0) ? -EINVAL : -errno;
+		fprintf(stderr, "error: Couldn't parse \"%s\": %s\n", str,
+			strerror(-ret));
+		return ret;
+	}
+
+	/* If for some reason usnic_-1 or something is given, then this will be
+	 * confusing since this function reserves negative return values for
+	 * errors.
+	 */
+	if (ret < 0) {
+		fprintf(stderr, "error: Invalid device name given\n");
+		return -EINVAL;
+	}
+
+	return ret;
+}
+
+static void show_help(const char *argv0)
 {
     printf("Usage: %s [-b] [-d device]\n", argv0);
     printf("\n");
@@ -171,26 +205,33 @@ int main(int argc, char *argv[]) {
 	int c;
 	char name[32];
 	int brief = 0;
-	int devno = -1;
+	long devno = -1;
 	int ret;
 
-	while ((c = getopt(argc, argv, "bd:")) != -1) {
+	while ((c = getopt(argc, argv, "bd:h")) != -1) {
 		switch (c) {
 		case 'b':
 			brief = 1;
 			break;
 		case 'd':
 			if (isdigit(optarg[0])) {
-				devno = atoi(optarg);
+				devno = parse_long(optarg);
 			} else if (strncmp(optarg, "usnic_", 6) == 0) {
-				devno = atoi(optarg + 6);
+				devno = parse_long(optarg + 6);
 			} else {
-				fprintf(stderr, "%s: bad device\n", optarg);
+				fprintf(stderr, "error: %s: Bad device\n",
+					optarg);
 			}
+
+			if (devno < 0)
+				return EXIT_FAILURE;
 			break;
+		case 'h':
+			show_help(argv[0]);
+			return EXIT_SUCCESS;
 		default:
 			show_help(argv[0]);
-			exit(1);
+			return EXIT_FAILURE;
 		}
 	}
 
@@ -204,7 +245,7 @@ int main(int argc, char *argv[]) {
 	hints->addr_format = FI_SOCKADDR;
 
 	if (devno != -1) {
-		sprintf(name, "usnic_%d", devno);
+		sprintf(name, "usnic_%ld", devno);
 		hints->fabric_attr->name = strdup(name);
 	}
 
