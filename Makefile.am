@@ -36,7 +36,10 @@
 
 AM_CFLAGS = -g -Wall -Werror -Wextra -pedantic
 
-EXTRA_DIST = README.md
+man_MANS = man/man1/usnic_devinfo.1
+
+EXTRA_DIST = README.md \
+	     man/man1/usnic_devinfo.1
 
 bin_PROGRAMS = \
 	usnic_devinfo
