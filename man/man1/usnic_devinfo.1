@@ -1,0 +1,98 @@
+.TH usnic_devinfo 1 "" "Cisco usNIC" ""
+.SH NAME
+.PP
+usnic_devinfo - Simple utility to list information about usnic
+interfaces
+.SH SYNOPSYS
+.IP
+.nf
+\f[C]
+usnic_devinfo\ -h
+usnic_devinfo\ [OPTIONS]
+\f[]
+.fi
+.SH DESCRIPTION
+.PP
+The usnic_devinfo utility can be used to query information about
+available Cisco usNIC interfaces.
+The usnic_devinfo utility can filter based on device name and can
+provide either a summary, or a detailed information listing about each
+interface.
+.SH OPTIONS
+.PP
+\f[I]-b\f[] : Instead of showing all information about an interface,
+show only a brief summary.
+.PP
+\f[I]-d\f[] : Specify the local device by name or number.
+usNIC interfaces are named following the pattern usnic_X where X is a
+non-negative integer.
+This option accepts either the full name or the number after the usnic_
+prefix.
+.SH USAGE EXAMPLES
+.IP
+.nf
+\f[C]
+$\ usnic_devinfo\ -d\ usnic_0
+\f[]
+.fi
+.PP
+Show information about the device named "usnic_0".
+.IP
+.nf
+\f[C]
+$\ usnic_devinfo\ -d\ 0
+\f[]
+.fi
+.PP
+This form is the same as the example above; it will display information
+about the device named "usnic_0".
+.IP
+.nf
+\f[C]
+$\ usnic_devinfo\ -d\ usnic_2\ -b
+\f[]
+.fi
+.PP
+Display brief information about the device named "usnic_2".
+.SH OUTPUT
+.PP
+By default, the full information is displayed:
+.IP
+.nf
+\f[C]
+$\ usnic_devinfo\ -d\ 0
+usnic_0:
+\ \ \ \ \ \ \ \ Interface:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ eth1
+\ \ \ \ \ \ \ \ MAC\ Address:\ \ \ \ \ \ \ \ \ \ \ \ \ 58:ac:78:f2:84:e8
+\ \ \ \ \ \ \ \ IP\ Address:\ \ \ \ \ \ \ \ \ \ \ \ \ \ 10.10.10.2
+\ \ \ \ \ \ \ \ Netmask:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 255.255.0.0
+\ \ \ \ \ \ \ \ Prefix\ len:\ \ \ \ \ \ \ \ \ \ \ \ \ \ 16
+\ \ \ \ \ \ \ \ MTU:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 9000
+\ \ \ \ \ \ \ \ Link\ State:\ \ \ \ \ \ \ \ \ \ \ \ \ \ UP
+\ \ \ \ \ \ \ \ Bandwidth:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 40\ Gb/s
+\ \ \ \ \ \ \ \ Device\ ID:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UCSC-PCIE-C40Q-03\ [VIC\ 1385]\ [0x014d]
+\ \ \ \ \ \ \ \ Vendor\ ID:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 4407
+\ \ \ \ \ \ \ \ Vendor\ Part\ ID:\ \ \ \ \ \ \ \ \ \ 207
+\ \ \ \ \ \ \ \ Firmware:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 4.1(1d)
+\ \ \ \ \ \ \ \ VFs:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 64
+\ \ \ \ \ \ \ \ CQ\ per\ VF:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 6
+\ \ \ \ \ \ \ \ QP\ per\ VF:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 6
+\ \ \ \ \ \ \ \ Interrupts\ per\ VF:\ \ \ \ \ \ \ 6
+\ \ \ \ \ \ \ \ Max\ CQ:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 384
+\ \ \ \ \ \ \ \ Max\ CQ\ Entries:\ \ \ \ \ \ \ \ \ \ 65535
+\ \ \ \ \ \ \ \ Max\ QP:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 384
+\ \ \ \ \ \ \ \ Max\ Send\ Credits:\ \ \ \ \ \ \ \ 4095
+\ \ \ \ \ \ \ \ Max\ Recv\ Credits:\ \ \ \ \ \ \ \ 4095
+\ \ \ \ \ \ \ \ Capabilities:
+\ \ \ \ \ \ \ \ \ \ Map\ per\ res:\ \ \ \ \ \ \ \ \ \ \ yes
+\ \ \ \ \ \ \ \ \ \ PIO\ sends:\ \ \ \ \ \ \ \ \ \ \ \ \ yes
+\ \ \ \ \ \ \ \ \ \ CQ\ interrupts:\ \ \ \ \ \ \ \ \ no
+\f[]
+.fi
+.IP
+.nf
+\f[C]
+$\ usnic_devinfo\ -d\ 0\ -b
+\ usnic_0:\ \ eth1\ 58:ac:78:f2:84:e8\ \ \ \ \ 10.10.10.2/16\ \ \ VIC\ 1385\ \ \ \ 4.1(1d)\ \ \ UP
+\f[]
+.fi
