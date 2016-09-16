@@ -1,5 +1,5 @@
-% usnic_devinfo(1)
-% Cisco Systems Inc
+% title: usnic_devinfo(1)
+% tagline: Cisco usNIC
 
 # NAME
 
