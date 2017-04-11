@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2016, Cisco Systems, Inc. All rights reserved.
+# Copyright (c) 2016-2017, Cisco Systems, Inc. All rights reserved.
 #
 # This software is available to you under a choice of one of two
 # licenses.  You may choose to be licensed under the terms of the GNU
@@ -35,7 +35,7 @@
 #
 
 AC_PREREQ([2.57])
-AC_INIT([usnic-tools], [1.1.1.0])
+AC_INIT([usnic-tools], [1.1.2.0])
 
 AC_CONFIG_AUX_DIR(config)
 AM_INIT_AUTOMAKE([foreign no-define 1.11 dist-bzip2])
