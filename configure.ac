@@ -107,5 +107,20 @@ AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[#include <rdma/fabric.h>
      AC_MSG_WARN([usnic-tools requires libfabric >=v1.3])
      AC_MSG_ERROR([Cannot continue])])
 
+# See if RPATH support works
+LDFLAGS_save=$LDFLAGS
+LDFLAFGS="$LDFLAGS_save -Wl,-rpath -Wl,$fab_libdir"
+AC_CHECK_LIB([fabric], fi_version,
+	     [rpath_works=1],
+	     [rpath_works=0
+	      LDFLAGS=$LDFLAGS_save])
+
+# If RPATH works, see if RUNPATH works, too
+AS_IF([test $rpath_works -eq 1],
+    [LDFLAGS_save2=$LDFLAGS
+     LDFLAGS="$LDFLAGS_save -Wl,-rpath -Wl,$fab_libdir -Wl,--enable-new-dtags"
+     AC_CHECK_LIB([fabric], fi_log, [],
+                   [LDFLAGS=$LDFLAGS_save2])])
+
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT
