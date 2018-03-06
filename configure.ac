@@ -35,7 +35,7 @@
 #
 
 AC_PREREQ([2.57])
-AC_INIT([usnic-tools], [1.1.2.1])
+AC_INIT([usnic-tools], [1.1.2.2a1])
 
 AC_CONFIG_AUX_DIR(config)
 AM_INIT_AUTOMAKE([foreign no-define 1.11 no-dist-gzip dist-bzip2])
