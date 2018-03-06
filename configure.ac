@@ -35,10 +35,10 @@
 #
 
 AC_PREREQ([2.57])
-AC_INIT([usnic-tools], [1.1.2.1a1])
+AC_INIT([usnic-tools], m4_normalize(esyscmd([./version.sh --version])))
 
 AC_CONFIG_AUX_DIR(config)
-AM_INIT_AUTOMAKE([foreign no-define 1.11 dist-bzip2])
+AM_INIT_AUTOMAKE([foreign no-define 1.11 no-dist-gzip dist-bzip2])
 
 dnl SILENT_RULES is new in AM 1.11, but we require 1.11 or higher via
 dnl autogen.  Limited testing shows that calling SILENT_RULES directly
