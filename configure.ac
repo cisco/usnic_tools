@@ -61,22 +61,23 @@ AS_IF([test "$with_libfabric" = "yes"],
 AS_IF([test "$with_libfabric" = "no"],
       [AC_MSG_WARN([Cannot specify --without-libfabric])
        AC_MSG_ERROR([Cannot continue])])
+fab_libdir=
 AS_IF([test "x$with_libfabric" != "x"],
       [include_happy=0
        lib_happy=0
        AS_IF([test -d "$with_libfabric/include"], [include_happy=1])
        AS_IF([test -d "$with_libfabric/lib64"],
-             [fab_libdir=lib64
+             [fab_libdir=$(readlink -f $with_libfabric/lib64)
 	      lib_happy=1])
        AS_IF([test -d "$with_libfabric/lib"],
-             [fab_libdir=lib
+             [fab_libdir=$(readlink -f $with_libfabric/lib)
 	      lib_happy=1])
        AS_IF([test $include_happy -eq 0 || test $lib_happy -eq 0],
              [AC_MSG_WARN([Could not find include or lib dir in $with_libfabric])
 	      AC_MSG_ERROR([Cannot continue])])
 
        CPPFLAGS="-I$with_libfabric/include $CPPFLAGS"
-       LDFLAGS="-L$with_libfabric/$fab_libdir $LDFLAGS"
+       LDFLAGS="-L$fab_libdir $LDFLAGS"
       ])
 
 dnl Checks for libraries
@@ -116,7 +117,7 @@ AC_CHECK_LIB([fabric], fi_version,
 	      LDFLAGS=$LDFLAGS_save])
 
 # If RPATH works, see if RUNPATH works, too
-AS_IF([test $rpath_works -eq 1],
+AS_IF([test $rpath_works -eq 1 && test -n "$fab_libdir"],
     [LDFLAGS_save2=$LDFLAGS
      LDFLAGS="$LDFLAGS_save -Wl,-rpath -Wl,$fab_libdir -Wl,--enable-new-dtags"
      AC_CHECK_LIB([fabric], fi_log, [],
