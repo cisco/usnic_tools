@@ -241,7 +241,9 @@ int main(int argc, char *argv[]) {
 	hints->ep_attr->type = FI_EP_DGRAM;
 
 	hints->caps = FI_MSG;
-	hints->mode = FI_LOCAL_MR;
+#if FI_MAJOR_VERSION < 2
+        hints->mode = FI_LOCAL_MR;
+#endif
 	hints->addr_format = FI_SOCKADDR;
 
 	if (devno != -1) {
